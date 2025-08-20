@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int K, D, M;
+    cin >> K >> D >> M;
+
+    int days_in_month[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+
+    // Първи ден от седмицата на първата година
+    int first_day = K - 1;
+    if(first_day == 0) first_day = 7;
+
+    // Брой дни до датата D/M
+    int days_passed = 0;
+    for(int i = 0; i < M-1; i++) days_passed += days_in_month[i];
+    days_passed += D - 1;
+
+    int weekday = (first_day + days_passed - 1) % 7 + 1;
+    cout << weekday << endl;
+}
