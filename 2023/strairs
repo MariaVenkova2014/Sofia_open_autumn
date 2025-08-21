@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a, b, r, p, k;
+    cin >> a >> b >> r >> p >> k;
+
+    int stairs = abs(b - a);  // разлика в етажите
+
+    int time = (stairs + 1) * r;
+    if (stairs > 1) time += (stairs - 1) * p;
+    time += stairs * k;
+
+    cout << time << endl;
+}
