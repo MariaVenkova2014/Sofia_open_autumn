@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int from, to, code;
+    cin >> from >> to >> code;
+
+    int lv, st, qty;
+    cin >> lv >> st >> qty;
+
+    int T[5];
+    for (int i = 1; i <= 4; i++) cin >> T[i];
+
+    // цена на вкуснотиите в стотинки
+    int total = (lv * 100 + st) * qty;
+
+    // добавяме пътни такси ако е в друг район
+    if (from != to) {
+        int cur = from;
+        while (cur != to) {
+            total += T[cur];   // плащаме таксата за този участък
+            cur++;
+            if (cur > 4) cur = 1; // околовръстното е кръг
+        }
+    }
+
+    // добавяме ако е експресна
+    if (code == 1) total += 998;
+
+    // преобразуваме в лв и ст
+    cout << total / 100 << " " << total % 100 << endl;
+}
