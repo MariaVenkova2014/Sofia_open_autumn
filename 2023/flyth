@@ -1,0 +1,26 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    int H1, M1, H2, M2, M3;
+    cin >> H1 >> M1 >> H2 >> M2 >> M3;
+
+    int T1 = H1 * 60 + M1;     // отиване
+    int T2 = H2 * 60 + M2;     // престой
+    int T3 = T1 - M3;          // връщане
+
+    int total = T1 + T2 + T3;  // общо време
+
+    int arrive = 12 * 60 + 30; // 12:30
+    int depart = arrive - total;
+
+    // Нормализиране в [0, 1439]
+    depart = ((depart % 1440) + 1440) % 1440;
+
+    int h = depart / 60;
+    int m = depart % 60;
+
+    cout << h << ":" << setw(2) << setfill('0') << m << endl;
+    return 0;
+}
