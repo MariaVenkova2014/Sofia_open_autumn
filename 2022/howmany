@@ -1,0 +1,25 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int M, N, P, Q;
+    if (!(cin >> M >> N >> P >> Q)) return 0;
+    int K;
+    cin >> K;
+
+    int T = M + N;
+    int R = T - P - Q; // кестеняви общо (гарантирано >= 0 по условие)
+
+    int ans = 0;
+    if (K == 1) {
+        ans = min(P, N);
+    } else if (K == 2) {
+        ans = max(0, Q - M);
+    } else if (K == 3) {
+        ans = max(0, R - N);
+    }
+
+    cout << ans << endl;
+    return 0;
+}
