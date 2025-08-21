@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;
+    
+    int a = N / 100;        // стотици
+    int b = (N / 10) % 10;  // десетици
+    int c = N % 10;         // единици
+    
+    int sum = a + b + c;
+    int result = 222 * sum;
+    
+    cout << result << endl;
+}
