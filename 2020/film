@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    long long X, Y, Z, T, M;
+    if (!(cin >> X >> Y)) return 0;
+    if (!(cin >> Z >> T)) return 0;
+    if (!(cin >> M)) return 0;
+
+    auto time_for = [](long long w, long long p, long long M) -> long long {
+        if (M == 0) return 0; // M-тата минута е "нула" -> още в началото
+        long long b = (M + w - 1) / w;          // ceil(M / w)
+        long long r = (M - 1) % w + 1;          // позиция в блока
+        return (b - 1) * (w + p) + r;
+    };
+
+    long long tA = time_for(X, Y, M);
+    long long tB = time_for(Z, T, M);
+
+    if (tA < tB) {
+        cout << "A " << tA << "\n";
+    } else if (tB < tA) {
+        cout << "B " << tB << "\n";
+    } else {
+        cout << "AB " << tA << "\n";
+    }
+    return 0;
+}
