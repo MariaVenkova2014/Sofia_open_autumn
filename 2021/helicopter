@@ -1,0 +1,38 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    int SH, SM;            // start hour, start minute
+    int MS, HH, HM;        // mission setup minutes, mission hours, mission minutes
+    int DH, DM, MH, MM;    // homework hours/minutes, mother's hour/minute
+
+    cin >> SH >> SM;
+    cin >> MS >> HH >> HM;
+    cin >> DH >> DM >> MH >> MM;
+
+    int start = SH * 60 + SM;
+
+    // Време за мисия и домашни
+    int mission = MS + HH * 60 + HM;
+    int homework = DH * 60 + DM;
+    int total = mission + homework;
+
+    int finish = start + total;
+
+    // Моментът на прибиране на майката (ако е "по-рано" по часовник -> следващия ден)
+    int mother = MH * 60 + MM;
+    if (mother < start) mother += 24 * 60;
+
+    if (finish <= mother) {
+        cout << "YES\n";
+        int diff = mother - finish;
+        cout << diff / 60 << ":" << setw(2) << setfill('0') << (diff % 60) << "\n";
+    } else {
+        cout << "NO\n";
+        int diff = finish - mother;
+        cout << diff / 60 << ":" << setw(2) << setfill('0') << (diff % 60) << "\n";
+    }
+
+    return 0;
+}
