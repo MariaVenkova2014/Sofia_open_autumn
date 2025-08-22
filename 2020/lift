@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int N, K;
+    cin >> N >> K;
+    vector<int> w(5);
+    for (int i = 0; i < 5; i++) cin >> w[i];
+
+    w.resize(N); // ползваме само първите N
+
+    int best = 1e9;
+
+    // Броим всички разпределения: за всяко дете - в кое возене ще е (0..K-1)
+    int totalWays = 1;
+    for (int i = 0; i < N; i++) totalWays *= K; // K^N възможности
+
+    for (int mask = 0; mask < totalWays; mask++) {
+        int temp = mask;
+        vector<int> sum(K, 0);
+        for (int i = 0; i < N; i++) {
+            int ride = temp % K;
+            sum[ride] += w[i];
+            temp /= K;
+        }
+        bool valid = true;
+        for (int i = 0; i < K; i++) if (sum[i] == 0) valid = false;
+        if (!valid) continue; // трябва всяко возене да има поне 1 дете
+        int capacity = *max_element(sum.begin(), sum.end());
+        best = min(best, capacity);
+    }
+
+    cout << best << endl;
+}
