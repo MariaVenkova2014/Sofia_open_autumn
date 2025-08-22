@@ -1,0 +1,35 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    int N, L, S;
+    cin >> N >> L >> S;
+
+    int pricePerPizza = L * 100 + S;     // в стотинки
+    int full = N * pricePerPizza;
+
+    // Вариант 1: отстъпка 8.99 лв. (само ако сметката е >= 30.00)
+    int opt1 = full;
+    if (full >= 3000) opt1 = full - 899;
+
+    // Вариант 2: всяка 3-та пица е 4.50 лв.
+    int opt2 = (N / 3) * 450 + (N - N / 3) * pricePerPizza;
+
+    // Вариант 3: всяка 4-та пица е безплатна
+    int opt3 = (N - N / 4) * pricePerPizza;
+
+    // Вземаме най-добрата отстъпка
+    int best = min(opt1, min(opt2, opt3));
+
+    // Минимална сума 20.00
+    if (best < 2000) best = 2000;
+
+    // Преобразуване в лева и стотинки
+    int leva = best / 100;
+    int stot = best % 100;
+
+    cout << leva << "." << setw(2) << setfill('0') << stot << endl;
+
+    return 0;
+}
