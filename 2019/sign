@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int a, b, c, d; // a - first number, b - second number, c - min answer, d - max answer
+	cin >> a >> b >> c >> d;
+
+	bool found = false;
+
+	if (a + b <= d && a + b >= c) {
+		if (found == true) cout << ' ';
+		cout << "+";
+		found = true;
+	}
+
+	if (a - b <= d && a - b >= c) {
+		if (found == true) cout << ' ';
+		cout << "-";
+		found = true;
+	}
+
+	if (a * b <= d && a * b >= c) {
+		if (found == true) cout << ' ';
+		cout << "*";
+		found = true;
+	}
+
+	if (a / b <= d && a / b >= c && b != 0) {
+		if (found == true) cout << ' ';
+		cout << "/";
+		found = true;
+	}
+
+	if (found == false) {
+		cout << "Proval";
+	}
+}
