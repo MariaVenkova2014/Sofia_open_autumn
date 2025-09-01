@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int a, b, r, p, k; // a - start, b - end, r - looking time, p - break time, k - steps time
+	cin >> a >> b >> r >> p >> k;
+
+	int stairs = abs(b - a); // number of stairs to climb or descend
+	int timeForSteps = stairs * k;
+	int timeForLooking = (stairs + 1) * r; // +1 for looking at the last step
+	int timeForBreaks = max(0, stairs - 1) * p;
+
+	int totalTime = timeForSteps + timeForLooking + timeForBreaks;
+	cout << totalTime << endl;
+}
