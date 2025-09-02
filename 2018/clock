@@ -1,0 +1,28 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    int hours = t / 100;   // AB
+    int minutes = t % 100; // CD
+
+    int A = t / 1000;          // първа цифра
+    int B = (t / 100) % 10;    // втора
+    int C = (t / 10) % 10;     // трета
+    int D = t % 10;            // четвърта
+
+    int addHours = D * 10 + C; // DC
+    int addMinutes = B * 10 + A; // BA
+
+    // Добавяме
+    minutes += addMinutes;
+    hours += addHours + minutes / 60;
+    minutes %= 60;
+    hours %= 24;
+
+    cout << setw(2) << setfill('0') << hours
+         << setw(2) << setfill('0') << minutes << endl;
+}
