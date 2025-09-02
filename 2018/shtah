@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int Rw, Cw, Rb, Cb;
+    cin >> Rw >> Cw;
+    cin >> Rb >> Cb;
+
+    for (int moves = 0; moves <= 14; moves++) {
+        for (int bw = 0; bw <= moves; bw++) {
+            int bc = moves - bw;
+            int rw = Rw - bw; // ред на бялата
+            int cw = Cw;
+            int rb = Rb + bc; // ред на черната
+            int cb = Cb;
+
+            if (rw < 1 || rw > 8 || rb < 1 || rb > 8) continue;
+
+            // Проверка дали са в дуел
+            if ((rw - 1 == rb && (cw - 1 == cb || cw + 1 == cb)) ||
+                (rb + 1 == rw && (cb - 1 == cw || cb + 1 == cw))) {
+                cout << moves << endl;
+                return 0;
+            }
+        }
+    }
+
+    cout << "NEVER" << endl;
+}
